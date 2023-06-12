@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 export default function About() {
+
     return (
         <div className='xl:col-start-3 xl:col-end-13 min-[320px]:col-span-full'>
             {/* // < !--1. name section-- > */}

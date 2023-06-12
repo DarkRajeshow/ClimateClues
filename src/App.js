@@ -2,19 +2,19 @@
 import './App.css';
 
 // to use react 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense, createContext } from 'react'
 
 //to get the country names by using short forms
 import countries from "i18n-iso-countries";
 
 //to import NavBar component
-import NavBar from './conponents/NavBar';
+import NavBar from './components/NavBar';
 
 //to import Data component
-import Data from './conponents/Data';
+import Data from './components/Data';
 
 //to import HighLights component
-import HighLights from './conponents/HighLights'
+import HighLights from './components/HighLights'
 
 //to import and use top loading bar component
 import LoadingBar from 'react-top-loading-bar';
@@ -26,73 +26,80 @@ import {
   Route
 } from "react-router-dom";
 
-import About from './conponents/About';
-import NavBarMobile from './conponents/NavBarMobile';
+// import About from './conponents/About';
+
+import NavBarMobile from './components/NavBarMobile';
+import Spinner from './components/Spinner';
+
+const About = lazy(() => import('./components/About'));
 
 //i don't know the use of this but this line is very important
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 
-function App() {
-  // all the required states
-  let [city, setCity] = useState("Solapur");
-  let [temp, setTemp] = useState();
-  let [description, setDescription] = useState();
-  let [wind, setWind] = useState();
-  let [weatherStatus, setWeatherStatus] = useState();
-  let [pressure, setPressure] = useState();
-  let [humidity, setHumidity] = useState();
-  let [country, setCountry] = useState();
-  let [weatherIcon, setWeatherIcon] = useState();
-  let [rainChances, setRainChances] = useState();
-  let [tempList, setTempList] = useState(false);
-  let [status, setStatus] = useState(true);
-  let [loading, setLoading] = useState(false);
-  let [topLoading, setTopLoading] = useState(0);
-  let [time, setTime] = useState()
 
-  let apiKey = process.env.REACT_APP_API;
+//to create the context which contains all the variables and states
+export const Contexts = createContext();
+
+function App() {
+  // all the required states which are further converted into context states.
+  const [city, setCity] = useState("Solapur");
+  const [temp, setTemp] = useState();
+  const [description, setDescription] = useState();
+  const [wind, setWind] = useState();
+  const [weatherStatus, setWeatherStatus] = useState();
+  const [pressure, setPressure] = useState();
+  const [humidity, setHumidity] = useState();
+  const [country, setCountry] = useState();
+  const [weatherIcon, setWeatherIcon] = useState();
+  const [rainChances, setRainChances] = useState();
+  const [tempList, setTempList] = useState(false);
+  const [status, setStatus] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [topLoading, setTopLoading] = useState(0);
+  const [time, setTime] = useState();
+  const [hasInternet, setInternet] = useState(true);
+
+  const apiKey = process.env.REACT_APP_API;
 
   // create a date object and getting the current date and day
-  let date = new Date();
+  const date = new Date();
 
-  let fullOption = {
+  const fullOption = {
     month: "long",
     day: "numeric",
     year: "numeric"
   }
-  let dayOption = {
+  const dayOption = {
     weekday: "long"
   }
-  let chatDayOptions = {
+  const chatDayOptions = {
     day: "numeric",
     month: "long"
   }
 
   //to get just day 
-  let day = date.toLocaleDateString("en-US", dayOption);
+  const day = date.toLocaleDateString("en-US", dayOption);
 
   //for full date ie. date/month/year 
-  let date_String = date.toLocaleDateString("en-US", fullOption);
-  let returnDay = { day, date_String };
+  const date_String = date.toLocaleDateString("en-US", fullOption);
+  const returnDay = { day, date_String };
   const localDateString = date.toLocaleDateString('en-CA', { year: '2-digit', month: '2-digit', day: '2-digit' }).replace(/\//g, '-');
 
 
   //to set the the toploading bar progress when feteching of data is done
-  let setProgress = (progress) => {
+  const setProgress = (progress) => {
     setTopLoading(progress);
   }
 
   //to get the data when someone click on search button
-  let getWeatherData = async () => {
+  const getWeatherData = async () => {
     setCity(document.querySelector(".SearchCity").value);
-    setProgress(0);
     upDateData();
-    setProgress(100);
   }
 
   //To update the data whenever we want 
-  let upDateData = async () => {
+  const upDateData = async () => {
 
     //these are used to display the appropreate component on the screen
     setStatus(true);
@@ -105,15 +112,16 @@ function App() {
     //this line of code is used to display the leading animation component
     document.querySelector("#con").style.display = "block";
 
+    setProgress(30);
     //now the main part comes in below lines we are fetching the data and converting that data into json format using .json() method
-    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${document.querySelector(".SearchCity").value === "" ? "Solapur" : document.querySelector(".SearchCity").value}&units=metric&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${document.querySelector(".SearchCity").value === "" ? "Solapur" : document.querySelector(".SearchCity").value}&units=metric&appid=${apiKey}`;
 
-    let dataUnparsed = await fetch(apiUrl);
+    const dataUnparsed = await fetch(apiUrl);
 
     //uptill now fetching of data is done so set progress as 70%
     setProgress(70);
 
-    let parsedData = await dataUnparsed.json();
+    const parsedData = await dataUnparsed.json();
 
     //to check wheather the data is recieved or not cod == 200 means the code is recieved successfully
     //if data is not recieved then below if block code will run
@@ -124,16 +132,16 @@ function App() {
     //if the data get recieved then below else block code will run 
     else {
       //to filter the today's data by 3 hour's of interval
-      let todaysData = await parsedData.list.filter(item => item.dt_txt.includes(localDateString));
+      const todaysData = await parsedData.list.filter(item => item.dt_txt.includes(localDateString));
 
       //to store the percentage of pricipitaion ie. POP in the array of todayPOP to display the chance of rain today for every 3 hour interval
-      let todaysPOP = [];
+      const todaysPOP = [];
 
       //to store the temperature data for the 5 days
-      let tempData = []
+      const tempData = []
 
       //to store the temperature date of the temperature which has been store in the tempData
-      let tempDay = []
+      const tempDay = []
 
       // to store the datewise data into tempData and tempDay array
       let check = parsedData.list[0].dt;
@@ -160,12 +168,16 @@ function App() {
       setTempList({
         labels: tempDay,
         datasets: [{
-          label: "Temprature in °C",
+          label: "°C",
           data: tempData,
-          borderColor: "#2b4c81",
-          pointBorderWidth: 5,
-          borderWidth: 5,
-          tension: 0.3,
+          pointBackgroundColor: "black",
+          pointBorderWidth: 4,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          borderColor: "black",
+          borderWidth: 3,
+          tension: 0.5,
+          fill: false,
         }]
       });
 
@@ -207,10 +219,18 @@ function App() {
     document.querySelector("#con").style.display = "none"
   }
 
-  // this is useEffect method it will run when the component first time mount inside the useEffect the upDateData fuciont is there which will update the current of data weather of solapur city
+  // this is useEffect method it will run when the component first time mount inside the useEffect the upDateData function is exist which will update the current weather data of solapur city
   useEffect(() => {
-    upDateData();
-
+    try {
+      upDateData();
+      setLoading(false);
+      setInternet(true);
+    }
+    catch (error) {
+      setLoading(false);
+      setInternet(false);
+      console.log("Error : ");
+    }
     // the below comment is used to stop the unnecessary errors 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -218,7 +238,8 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Contexts.Provider value={{ city, setCity, temp, setTemp, description, setDescription, wind, setWind, weatherStatus, setWeatherStatus, pressure, setPressure, humidity, setHumidity, country, setCountry, country, setCountry, weatherIcon, setWeatherIcon, rainChances, setRainChances, tempList, setTempList, status, setStatus, loading, setLoading, topLoading, setTopLoading, time, setTime, hasInternet, setInternet, setProgress, returnDay, getWeatherData }}>
+
         {/* this is under the router element  */}
         {/* this is used to add the toploading bar and to add the style to the top loading bar */}
         <LoadingBar
@@ -228,22 +249,31 @@ function App() {
           onLoaderFinished={() => setProgress(0)}
         />
 
-        {/* to set the component */}
         <div className="grid grid-cols-12">
-          <NavBarMobile setProgress={setProgress} />
-          <NavBar setProgress={setProgress} />
-          <Routes>
-            <Route path='/ClimateClue' element={[<Data key="Data" tempList={tempList} city={city} day={returnDay} getWeatherData={getWeatherData} temp={temp} description={description} wind={wind} pressure={pressure} humidity={humidity} weatherStatus={weatherStatus} status={status} loading={loading} />, <HighLights key="HighLights" dateTime={time} city={city} getWeatherData={getWeatherData} temp={temp} description={description} weatherStatus={weatherStatus} country={country} weatherIcon={weatherIcon} todaysPOP={rainChances} />]}></Route>
-
-            <Route path='/ClimateClue/about' element={[<About key={1} setProgress={setProgress} />]}></Route>
-          </Routes>
+          <NavBarMobile />
+          <NavBar />
+          <Suspense fallback={<Spinner />}>
+            <Routes>
+              <Route path='/ClimateClues' element={[<Data />, <HighLights />]}></Route>
+              <Route path='/ClimateClues/about' element={<About />}></Route>
+            </Routes>
+          </Suspense>
         </div>
-      </Router>
+      </Contexts.Provider>
     </>
   );
 }
 
+function MainApp() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  )
+}
+
+
 //to export the the app to the main HTML file
-export default App;
+export default MainApp;
 
 // handleSubmit={handleSubmit} handleChange={handleChange} resetTranscript={resetTranscript} handleVoiceSearch={""} 
