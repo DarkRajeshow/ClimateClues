@@ -254,7 +254,7 @@ function App() {
           <NavBar />
           <Suspense fallback={<Spinner />}>
             <Routes>
-              <Route path='/ClimateClues' element={[<Data />, <HighLights />]}></Route>
+              <Route path='/ClimateClues' element={[<Data key={1}/>, <HighLights key={2}/>]}></Route>
               <Route path='/ClimateClues/about' element={<About />}></Route>
             </Routes>
           </Suspense>

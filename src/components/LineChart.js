@@ -1,18 +1,14 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
-import { Pie } from 'react-chartjs-2'
-import { Bar } from 'react-chartjs-2'
 import { Chart as ChartJS, Ticks } from 'chart.js/auto'
 
 export default function LineChart({ data }) {
 
     let mintemp = Math.min(...(data.datasets[0].data)) - 4;
     let maxtemp = Math.max(...(data.datasets[0].data)) + 4;
-    console.log(mintemp, maxtemp, data.datasets[0].data);
-
 
     let stepsizeis = Math.round((maxtemp - mintemp) / 8);
-    console.log(stepsizeis);
+    
     let options = {
         responsive: true,
         Plugin: {

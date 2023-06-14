@@ -7,9 +7,10 @@ import LineChart from './LineChart';
 import InternetError from './InternetError';
 import { Contexts } from '../App';
 
+
 export default function Data() {
 
-  const { tempList, returnDay, getWeatherData, status, loading, hasInternet, city , setCity} = useContext(Contexts)
+  const { tempList, returnDay, getWeatherData, status, loading, hasInternet, city, setCity } = useContext(Contexts)
   const handleChange = (event) => {
     const newCity = event.target.value;
     setCity(newCity);
