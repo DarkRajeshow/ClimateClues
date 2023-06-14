@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ClimateClues/static/css/main.bcb87db1.css",
-    "main.js": "/ClimateClues/static/js/main.49f265a9.js",
+    "main.js": "/ClimateClues/static/js/main.88ccd124.js",
     "static/js/956.31bb2845.chunk.js": "/ClimateClues/static/js/956.31bb2845.chunk.js",
     "static/js/787.04af8d4a.chunk.js": "/ClimateClues/static/js/787.04af8d4a.chunk.js",
     "static/media/fa-solid-900.ttf": "/ClimateClues/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
@@ -14,12 +14,12 @@
     "static/media/fa-v4compatibility.woff2": "/ClimateClues/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
     "index.html": "/ClimateClues/index.html",
     "main.bcb87db1.css.map": "/ClimateClues/static/css/main.bcb87db1.css.map",
-    "main.49f265a9.js.map": "/ClimateClues/static/js/main.49f265a9.js.map",
+    "main.88ccd124.js.map": "/ClimateClues/static/js/main.88ccd124.js.map",
     "956.31bb2845.chunk.js.map": "/ClimateClues/static/js/956.31bb2845.chunk.js.map",
     "787.04af8d4a.chunk.js.map": "/ClimateClues/static/js/787.04af8d4a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bcb87db1.css",
-    "static/js/main.49f265a9.js"
+    "static/js/main.88ccd124.js"
   ]
 }
