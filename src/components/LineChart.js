@@ -51,7 +51,7 @@ export default function LineChart({ data }) {
         <>
             <div className="lineChart ">
                 <div className="mainHeadText text-xl font-semibold my-3 border-b-2 border-black text-left inline-block">
-                    Avarage Daily Temprature
+                    Future Temprature Prediction.
                 </div>
                 <div className="realChart md:w-8/12 min-[320px]:w-full m-auto">
                     <Line data={data} options={options} />

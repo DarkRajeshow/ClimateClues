@@ -23,10 +23,10 @@ export default function NavBar() {
             <p className="logo-text text-xl mt-6 m-2 align-middle pt-2">Climate Clues</p>
           </div>
           <div className="choices">
-            <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-solid fa-image mr-6 mt-2 transition-all text-2xl"></i><li className='transition-all'>Dashboard</li></Link>
-            <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-regular fa-map mr-6 mt-2 transition-all text-2xl"></i><li className='transition-all'>Maps</li></Link>
-            <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-solid fa-location-crosshairs mr-6  mt-2  transition-all text-2xl"></i><li className='transition-all'>Something</li></Link>
-            <Link to="/ClimateClues/about" className='flex' onClick={setOutTheBar}><i className="fa-regular fa-address-card mr-6 mt-2 transition-all text-2xl"></i><li className='transition-all'>About</li></Link>
+            <Link to="/ClimateClues" className='flex items-center' onClick={setOutTheBar}><i className="fa-solid fa-image mr-2 transition-all text-2xl"></i><li className='transition-all'>Dashboard</li></Link>
+            {/* <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-regular fa-map mr-6 mt-2 transition-all text-2xl"></i><li className='transition-all'>Maps</li></Link>
+            <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-solid fa-location-crosshairs mr-6  mt-2  transition-all text-2xl"></i><li className='transition-all'>Something</li></Link> */}
+            <Link to="/ClimateClues/about" className='flex items-center' onClick={setOutTheBar}><i className="fa-regular fa-address-card mr-2 transition-all text-2xl"></i><li className='transition-all'>About</li></Link>
           </div>
         </div>
       </nav>
