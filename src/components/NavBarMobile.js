@@ -14,15 +14,15 @@ export default function NavBarMobile() {
     
     return (
         <>
-            <nav className="navBar-2 z-10 fixed w-full h-20 col-span-full bg-slate-400 xl:hidden min-[320px]:flex">
+            <nav className="navBar-2 z-10 fixed w-full bg-slate-400 text-gray-600 flex xl:hidden ">
                 <div className="menu flex">
                     <div className="logo-ani-2 flex">
-                        <i className="fa-solid fa-cloud-bolt logoImg text-5xl m-5"></i>
+                        <i className="fa-solid fa-cloud-bolt text-4xl m-3"></i>
                     </div>
-                    <div className="choices flex">
-                        <Link to="/ClimateClues" className='flex mr-10'><li className='relative bottom-3' onClick={setOutTheBar}>Dashboard</li></Link>
+                    <div className="mx-2 font-bold items-center list-none flex">
+                        <Link to="/ClimateClues" className='flex mr-5'><li className='' onClick={setOutTheBar}>Dashboard</li></Link>
 
-                        <Link to="/ClimateClues/about" className='grid grid-cols-8'><li className='relative bottom-3' onClick={setOutTheBar}>About</li></Link>
+                        <Link to="/ClimateClues/about" className=''><li className='' onClick={setOutTheBar}>About</li></Link>
                     </div>
                 </div>
             </nav>

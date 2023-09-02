@@ -49,13 +49,12 @@ export default function LineChart({ data }) {
     }
     return (
         <>
-            <div className="lineChart ">
-                <div className="mainHeadText text-xl font-semibold my-3 border-b-2 border-black text-left inline-block">
+            <div className="bg-[#ebfff7] rounded-xl py-4 sm:px-12 sm:py-6">
+                <div className="text-[#ff9494] text-base sm:text-xl font-semibold my-3 border-b-2 border-black text-left inline-block">
                     Future Temprature Prediction.
                 </div>
-                <div className="realChart md:w-8/12 min-[320px]:w-full m-auto">
-                    <Line data={data} options={options} />
-                    {/* <Bar data={data} options={options} /> */}
+                <div className="realChart w-full sm:w-[75%] m-auto">
+                    <Line data={data} options={options} className=''/>
                 </div>
             </div>
         </>

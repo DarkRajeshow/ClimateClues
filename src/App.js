@@ -148,7 +148,7 @@ function App() {
       await parsedData.list.forEach(element => {
         if (element.dt === check) {
           tempData.push(Math.floor(element.main.temp))
-          tempDay.push(new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions));
+          tempDay.push((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice(0, 4) + "." + (new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).length - 3, (new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).length - 1))))));
           check += 86400;
         }
       });
@@ -172,7 +172,7 @@ function App() {
           data: tempData,
           pointBackgroundColor: "black",
           pointBorderWidth: 4,
-          pointRadius: 6,
+          pointRadius: 3,
           pointHoverRadius: 8,
           borderColor: "black",
           borderWidth: 3,
@@ -254,7 +254,7 @@ function App() {
           <NavBar />
           <Suspense fallback={<Spinner />}>
             <Routes>
-              <Route path='/ClimateClues' element={[<Data key={1}/>, <HighLights key={2}/>]}></Route>
+              <Route path='/ClimateClues' element={[<Data key={1} />, <HighLights key={2} />]}></Route>
               <Route path='/ClimateClues/about' element={<About />}></Route>
             </Routes>
           </Suspense>

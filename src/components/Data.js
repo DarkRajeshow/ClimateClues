@@ -19,10 +19,10 @@ export default function Data() {
   };
 
   return (
-    <div className=' min-[320px]:mt-20 xl:mt-0 full-heigth bg-slate-800 xl:col-start-3 xl:col-end-10 md:col-start-1 md:col-end-9 min-[320px]:col-span-full data_class'>
-      <div className="topHeader flex ">
-        <div className="topHeaderText">
-          <div className="dayDetails sm:text-2xl min-[320px]:text-lg">{returnDay.day}</div>
+    <div className='mt-16 xl:mt-0 h-auto sm:h-screen bg-slate-800 xl:col-start-3 xl:col-end-10 md:col-start-1 md:col-end-9 min-[320px]:col-span-full data_class p-2 sm:p-5'>
+      <div className="topHeader flex items-center flex-col sm:flex-row">
+        <div className="topHeaderText sm:w-[40%] flex sm:block items-center">
+          <div className="dayDetails sm:text-2xl min-[320px]:text-lg mr-2 sm:mr-0">{returnDay.day}</div>
           <div className="dateDetails sm:text-base min-[320px]:text-sm">{returnDay.date_String}</div>
         </div>
         <div className="topHeaderSerach">
@@ -37,9 +37,9 @@ export default function Data() {
                   setCity(tempCityName);
                   getWeatherData();
                 }
-              }} type="text" id="voice-search" className="SearchCity bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search city..." required value={tempCityName} onChange={handleChange} />
+              }} type="text" id="voice-search" className="SearchCity bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2 sm:py-2.5 sm:px-3p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search city..." required value={tempCityName} onChange={handleChange} />
             </div>
-            <button className="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-black rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-black dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>{
+            <button className="inline-flex items-center p-2 sm:py-2.5 sm:px-3 ml-2 text-sm font-medium text-white bg-black rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-black dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>{
               setCity(tempCityName);
               getWeatherData();
             }} >
@@ -59,9 +59,7 @@ export default function Data() {
       {(!hasInternet && !loading) && <InternetError />}
 
 
-      {tempList && <div className="tempChart bg-[#ebfff7] rounded-xl px-12 py-6">
-        <LineChart data={tempList} />
-      </div>}
+      {tempList && <LineChart data={tempList} />}
     </div>
   )
 }

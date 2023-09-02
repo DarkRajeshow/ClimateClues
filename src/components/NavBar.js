@@ -15,7 +15,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="navBar-1 bg-slate-400 col-start-1 col-end-3 sm:col-start-1 xl:block min-[320px]:hidden">
+      <nav className="relative navBar-1 h-screen bg-slate-400 col-start-1 col-end-3 sm:col-start-1 xl:block min-[320px]:hidden">
         <div className="menu">
 
           <div className="logo-ani flex">
@@ -24,11 +24,10 @@ export default function NavBar() {
           </div>
           <div className="choices">
             <Link to="/ClimateClues" className='flex items-center' onClick={setOutTheBar}><i className="fa-solid fa-image mr-2 transition-all text-2xl"></i><li className='transition-all'>Dashboard</li></Link>
-            {/* <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-regular fa-map mr-6 mt-2 transition-all text-2xl"></i><li className='transition-all'>Maps</li></Link>
-            <Link to="/ClimateClues" className='flex' onClick={setOutTheBar}><i className="fa-solid fa-location-crosshairs mr-6  mt-2  transition-all text-2xl"></i><li className='transition-all'>Something</li></Link> */}
             <Link to="/ClimateClues/about" className='flex items-center' onClick={setOutTheBar}><i className="fa-regular fa-address-card mr-2 transition-all text-2xl"></i><li className='transition-all'>About</li></Link>
           </div>
         </div>
+        <div className='absolute bottom-0 p-2 text-xs font-semibold text-center w-full'>Made with ❤️ heart by <br /><a className='text-blue-700' target='_blank' href='https://rajesh2004.vercel.app/'>©️Rajesh Adeli</a></div>
       </nav>
     </>
   )

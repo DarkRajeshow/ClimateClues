@@ -14,10 +14,6 @@ body {
 }
 
 
-.full-heigth {
-  height: 100vh;
-}
-
 .container {
   width: 100%;
 }
@@ -32,7 +28,6 @@ body {
 .data_class {
   background: white;
   text-align: center;
-  padding: 20px;
 }
 
 .logoImg {
@@ -97,7 +92,7 @@ body {
 }
 
 .topHeaderText {
-  width: 40%;
+  
   color: rgb(63, 94, 251);
   color: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
 }
@@ -123,7 +118,6 @@ body {
 .dataIcon {
   font-size: 35px;
   color: #7273fd;
-  margin-top: 15%;
 }
 
 .dataText {
