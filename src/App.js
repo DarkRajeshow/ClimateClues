@@ -148,7 +148,7 @@ function App() {
       await parsedData.list.forEach(element => {
         if (element.dt === check) {
           tempData.push(Math.floor(element.main.temp))
-          tempDay.push((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice(0, 4) + "." + (new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).length - 3, (new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).length - 1))))));
+          tempDay.push((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice(0, 4) + "." + (new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).length - 4)))));
           check += 86400;
         }
       });
