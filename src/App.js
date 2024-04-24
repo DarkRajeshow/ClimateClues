@@ -31,8 +31,6 @@ import {
 import NavBarMobile from './components/NavBarMobile';
 import Spinner from './components/Spinner';
 
-const About = lazy(() => import('./components/About'));
-
 //i don't know the use of this but this line is very important
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
@@ -144,12 +142,16 @@ function App() {
       const tempDay = []
 
       // to store the datewise data into tempData and tempDay array
-      let check = parsedData.list[0].dt;
+      const check = parsedData.list[0].dt;
+      let nextCheck = check;
+
       await parsedData.list.forEach(element => {
-        if (element.dt === check) {
-          tempData.push(Math.floor(element.main.temp))
-          tempDay.push((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice(0, 4) + "." + (new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).slice((new Date(check * 1000).toLocaleDateString("en-US", chatDayOptions).length - 4)))));
-          check += 86400;
+        if (element.dt === nextCheck) {
+          tempData.push(Math.floor(element.main.temp));
+          tempDay.push(
+            new Date(nextCheck * 1000).toLocaleDateString()
+          );
+          nextCheck += 86400;
         }
       });
 
@@ -255,7 +257,6 @@ function App() {
           <Suspense fallback={<Spinner />}>
             <Routes>
               <Route path='/ClimateClues' element={[<Data key={1} />, <HighLights key={2} />]}></Route>
-              <Route path='/ClimateClues/about' element={<About />}></Route>
             </Routes>
           </Suspense>
         </div>

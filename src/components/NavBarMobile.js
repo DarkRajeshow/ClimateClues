@@ -21,8 +21,6 @@ export default function NavBarMobile() {
                     </div>
                     <div className="mx-2 font-bold items-center list-none flex">
                         <Link to="/ClimateClues" className='flex mr-5'><li className='' onClick={setOutTheBar}>Dashboard</li></Link>
-
-                        <Link to="/ClimateClues/about" className=''><li className='' onClick={setOutTheBar}>About</li></Link>
                     </div>
                 </div>
             </nav>

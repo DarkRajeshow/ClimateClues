@@ -24,10 +24,8 @@ export default function NavBar() {
           </div>
           <div className="choices">
             <Link to="/ClimateClues" className='flex items-center' onClick={setOutTheBar}><i className="fa-solid fa-image mr-2 transition-all text-2xl"></i><li className='transition-all'>Dashboard</li></Link>
-            <Link to="/ClimateClues/about" className='flex items-center' onClick={setOutTheBar}><i className="fa-regular fa-address-card mr-2 transition-all text-2xl"></i><li className='transition-all'>About</li></Link>
           </div>
         </div>
-        <div className='absolute bottom-0 p-2 text-xs font-semibold text-center w-full'>Made with ❤️ heart by <br /><a className='text-blue-700' target='_blank' href='https://rajesh2004.vercel.app/'>©️Rajesh Adeli</a></div>
       </nav>
     </>
   )
